@@ -24,19 +24,18 @@ class ApiResponseListPagination extends ApiResponse
     public function toResponse($request): JsonResponse
     {
         $isResource = $this->list instanceof ResourceCollection;
-        $hasPagination = $this->list instanceof LengthAwarePaginator ||
-            $isResource && ($this->list->resource instanceof AbstractPaginator || $this->list->resource instanceof AbstractCursorPaginator);
-
-        $list = $isResource ? $this->list->resource : $this->list;
+        $paginator = $isResource ? $this->list->resource : $this->list;
+        $hasPagination = $paginator instanceof AbstractPaginator || $paginator instanceof AbstractCursorPaginator;
+        $data = $isResource ? $this->list->toArray($request) : (method_exists($paginator, 'items') ? $paginator->items() : $paginator);
 
         return response()->json([
-            'data' => method_exists($list, 'items') ? $list->items() : $list,
+            'data' => $data,
             'payload' => $this->payload,
             'pagination' => $hasPagination ? [
-                'current_page' => $list->currentPage(),
-                'last_page' => $list->lastPage(),
-                'per_page' => $list->perPage(),
-                'total' => $list->total(),
+                'current_page' => $paginator->currentPage(),
+                'last_page' => $paginator->lastPage(),
+                'per_page' => $paginator->perPage(),
+                'total' => $paginator->total(),
             ] : [],
         ], $this->statusCode, $this->getHeaders());
     }

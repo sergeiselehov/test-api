@@ -161,6 +161,16 @@ abstract class ApiResponse implements Responsable
     }
 
     /**
+     * Success API response factory with data payload.
+     *
+     * @param array|Arrayable $data
+     */
+    public static function createdWithData($data, ?string $message = null, array $headers = []): ApiResponseCreatedWithData
+    {
+        return (new ApiResponseCreatedWithData($headers))->data($data)->message($message);
+    }
+
+    /**
      * Success API response factory.
      */
     public static function error(string $message, array $headers = []): ApiResponseError
