@@ -5,8 +5,6 @@ namespace App\Http\Responses;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use OpenApi\Annotations as OA;
 
 class ApiResponseValidationError extends ApiResponse
 {

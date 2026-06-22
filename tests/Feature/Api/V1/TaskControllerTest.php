@@ -108,6 +108,39 @@ class TaskControllerTest extends TestCase
         $this->assertSame([$later->id, $earlier->id], $ids);
     }
 
+    public function test_can_sort_tasks_by_created_at(): void
+    {
+        $earlier = Task::factory()->create();
+        $later = Task::factory()->create();
+
+        $response = $this->getJson('/api/v1/tasks?sort=created_at');
+        $response->assertOk();
+        $ids = array_column($response->json('data'), 'id');
+
+        $this->assertSame([$earlier->id, $later->id], $ids);
+    }
+
+    public function test_can_sort_tasks_by_created_at_descending(): void
+    {
+        $earlier = Task::factory()->create();
+        $later = Task::factory()->create();
+
+        $response = $this->getJson('/api/v1/tasks?sort=-created_at');
+        $response->assertOk();
+        $ids = array_column($response->json('data'), 'id');
+
+        $this->assertSame([$later->id, $earlier->id], $ids);
+    }
+
+    public function test_list_uses_default_pagination_when_per_page_is_not_set(): void
+    {
+        Task::factory()->count(3)->create();
+
+        $response = $this->getJson('/api/v1/tasks');
+        $response->assertOk()->assertJsonCount(3, 'data');
+        $response->assertJsonPath('pagination.current_page', 1);
+    }
+
     public function test_can_show_task(): void
     {
         $task = Task::factory()->create();
@@ -171,6 +204,27 @@ class TaskControllerTest extends TestCase
             'id' => $task->id,
             'title' => 'Задача3',
             'status' => TaskStatus::Done->value,
+        ]);
+    }
+
+    public function test_can_update_category_and_description(): void
+    {
+        $task = Task::factory()->create([
+            'category' => 'Работа',
+            'description' => 'Старое описание',
+        ]);
+
+        $response = $this->putJson("/api/v1/tasks/{$task->id}", [
+            'category' => 'Личное',
+            'description' => 'Новое описание',
+        ]);
+
+        $response->assertOk();
+
+        $this->assertDatabaseHas('tasks', [
+            'id' => $task->id,
+            'category' => 'Личное',
+            'description' => 'Новое описание',
         ]);
     }
 

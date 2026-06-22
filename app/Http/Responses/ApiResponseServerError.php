@@ -4,8 +4,6 @@ declare(strict_types=1);
 namespace App\Http\Responses;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use OpenApi\Annotations as OA;
 
 class ApiResponseServerError extends ApiResponse
 {
