@@ -1,0 +1,218 @@
+{
+    "post api/v1/tasks": {
+        "201": {
+            "request": {
+                "title": "Задача1",
+                "description": "Задача1 описание",
+                "due_date": "2025-01-20T15:00:00",
+                "priority": "высокий",
+                "category": "Работа",
+                "status": "не выполнена"
+            },
+            "response": {
+                "code": 201,
+                "data": {
+                    "id": 1
+                },
+                "message": "Task created successfully"
+            }
+        },
+        "422": {
+            "request": null,
+            "response": {
+                "code": 422,
+                "errors": {
+                    "title": [
+                        "Необходимо заполнить."
+                    ],
+                    "due_date": [
+                        "Необходимо заполнить."
+                    ],
+                    "priority": [
+                        "Необходимо заполнить."
+                    ],
+                    "category": [
+                        "Необходимо заполнить."
+                    ]
+                },
+                "message": "Необходимо заполнить обязательные поля."
+            }
+        }
+    },
+    "get api/v1/tasks": {
+        "200": {
+            "request": null,
+            "response": {
+                "data": [
+                    {
+                        "id": 1,
+                        "title": "Dolorem aut sint.",
+                        "description": "Eius aliquam non at consequatur quam. Quia eveniet possimus dolorum deserunt qui. Optio aut nihil ad est incidunt officia. Qui sed id repellat sapiente.",
+                        "due_date": "2026-07-12T11:36:54+00:00",
+                        "create_date": "2026-06-22T12:20:11+00:00",
+                        "status": "выполнена",
+                        "priority": "средний",
+                        "category": "Дом"
+                    },
+                    {
+                        "id": 2,
+                        "title": "Architecto doloremque et sapiente.",
+                        "description": "Aut placeat nemo quo quibusdam fugiat et ut. Eveniet vero ut eos autem commodi vel sapiente. Recusandae alias ex et quod alias.",
+                        "due_date": "2026-07-07T11:15:32+00:00",
+                        "create_date": "2026-06-22T12:20:11+00:00",
+                        "status": "не выполнена",
+                        "priority": "низкий",
+                        "category": "Дом"
+                    },
+                    {
+                        "id": 3,
+                        "title": "Eos qui eum quasi.",
+                        "description": "Dicta quod ut voluptas. Quod dignissimos ut repellat ut quae. Autem eum perferendis commodi reprehenderit qui. Eos culpa qui et officiis commodi aut totam aut.",
+                        "due_date": "2026-06-28T23:30:06+00:00",
+                        "create_date": "2026-06-22T12:20:11+00:00",
+                        "status": "выполнена",
+                        "priority": "низкий",
+                        "category": "Работа"
+                    },
+                    {
+                        "id": 4,
+                        "title": "Unde quaerat dolor dolorem tempora.",
+                        "description": null,
+                        "due_date": "2026-06-30T01:44:37+00:00",
+                        "create_date": "2026-06-22T12:20:11+00:00",
+                        "status": "не выполнена",
+                        "priority": "высокий",
+                        "category": "Работа"
+                    },
+                    {
+                        "id": 5,
+                        "title": "Pariatur dolorem quia minima.",
+                        "description": null,
+                        "due_date": "2026-07-01T20:31:55+00:00",
+                        "create_date": "2026-06-22T12:20:11+00:00",
+                        "status": "не выполнена",
+                        "priority": "высокий",
+                        "category": "Дом"
+                    }
+                ],
+                "payload": [],
+                "pagination": {
+                    "current_page": 1,
+                    "last_page": 4,
+                    "per_page": 5,
+                    "total": 20
+                }
+            }
+        }
+    },
+    "get api/v1/tasks/{id}": {
+        "200": {
+            "request": null,
+            "response": {
+                "data": {
+                    "id": 1,
+                    "title": "Reprehenderit odit ut.",
+                    "description": "Et error aspernatur non rem a. Eius consequuntur ea fugit reiciendis. Quo eligendi aut debitis ab nulla. Facere accusamus voluptatum beatae laboriosam.",
+                    "due_date": "2026-07-10T05:56:59+00:00",
+                    "create_date": "2026-06-22T12:20:11+00:00",
+                    "status": "не выполнена",
+                    "priority": "низкий",
+                    "category": "Личное"
+                }
+            }
+        },
+        "404": {
+            "request": null,
+            "response": {
+                "code": 404,
+                "message": "Задача с ID 999999 не найдена."
+            }
+        }
+    },
+    "put api/v1/tasks/{id}": {
+        "200": {
+            "request": {
+                "title": "Задача2 обновлена",
+                "priority": "низкий",
+                "status": "выполнена"
+            },
+            "response": {
+                "code": 200,
+                "message": "Task updated successfully"
+            }
+        },
+        "422": {
+            "request": {
+                "priority": "invalid-priority"
+            },
+            "response": {
+                "code": 422,
+                "errors": {
+                    "priority": [
+                        "Выбранное значение недопустимо."
+                    ]
+                },
+                "message": "Необходимо заполнить обязательные поля."
+            }
+        },
+        "404": {
+            "request": {
+                "title": "X"
+            },
+            "response": {
+                "code": 404,
+                "message": "Задача с ID 999999 не найдена."
+            }
+        }
+    },
+    "patch api/v1/tasks/{id}": {
+        "200": {
+            "request": {
+                "status": "выполнена"
+            },
+            "response": {
+                "code": 200,
+                "message": "Task updated successfully"
+            }
+        },
+        "422": {
+            "request": {
+                "status": "invalid-status"
+            },
+            "response": {
+                "code": 422,
+                "errors": {
+                    "status": [
+                        "Выбранное значение недопустимо."
+                    ]
+                },
+                "message": "Необходимо заполнить обязательные поля."
+            }
+        },
+        "404": {
+            "request": {
+                "title": "X"
+            },
+            "response": {
+                "code": 404,
+                "message": "Задача с ID 999999 не найдена."
+            }
+        }
+    },
+    "delete api/v1/tasks/{id}": {
+        "200": {
+            "request": null,
+            "response": {
+                "code": 200,
+                "message": "Task deleted successfully"
+            }
+        },
+        "404": {
+            "request": null,
+            "response": {
+                "code": 404,
+                "message": "Задача с ID 999999 не найдена."
+            }
+        }
+    }
+}

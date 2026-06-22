@@ -8,11 +8,13 @@ use App\Enums\TaskPriority;
 use App\Enums\TaskStatus;
 use App\Models\Task;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\Support\RecordsApiExamples;
 use Tests\TestCase;
 
 class TaskControllerTest extends TestCase
 {
     use DatabaseTransactions;
+    use RecordsApiExamples;
 
     public function test_can_create_task(): void
     {
@@ -146,6 +148,80 @@ class TaskControllerTest extends TestCase
             'status' => TaskStatus::Done->value,
             'category' => $task->category,
         ]);
+    }
+
+    public function test_can_partially_update_task_via_patch(): void
+    {
+        $task = Task::factory()->create([
+            'title' => 'Задача3',
+            'priority' => TaskPriority::High,
+            'status' => TaskStatus::Pending,
+        ]);
+
+        $response = $this->patchJson("/api/v1/tasks/{$task->id}", [
+            'status' => TaskStatus::Done->value,
+        ]);
+
+        $response->assertOk()->assertJson([
+            'code' => 200,
+            'message' => 'Task updated successfully',
+        ]);
+
+        $this->assertDatabaseHas('tasks', [
+            'id' => $task->id,
+            'title' => 'Задача3',
+            'status' => TaskStatus::Done->value,
+        ]);
+    }
+
+    public function test_update_rejects_invalid_priority(): void
+    {
+        $task = Task::factory()->create();
+
+        $response = $this->putJson("/api/v1/tasks/{$task->id}", [
+            'priority' => 'invalid-priority',
+        ]);
+
+        $response->assertStatus(422);
+    }
+
+    public function test_update_rejects_invalid_status(): void
+    {
+        $task = Task::factory()->create();
+
+        $response = $this->putJson("/api/v1/tasks/{$task->id}", [
+            'status' => 'invalid-status',
+        ]);
+
+        $response->assertStatus(422);
+    }
+
+    public function test_update_rejects_invalid_due_date(): void
+    {
+        $task = Task::factory()->create();
+
+        $response = $this->putJson("/api/v1/tasks/{$task->id}", [
+            'due_date' => 'not-a-date',
+        ]);
+
+        $response->assertStatus(422);
+    }
+
+    public function test_patch_rejects_invalid_status(): void
+    {
+        $task = Task::factory()->create();
+
+        $response = $this->patchJson("/api/v1/tasks/{$task->id}", [
+            'status' => 'invalid-status',
+        ]);
+
+        $response->assertStatus(422);
+    }
+
+    public function test_patch_returns_404_for_missing_task(): void
+    {
+        $response = $this->patchJson('/api/v1/tasks/999999', ['title' => 'X']);
+        $response->assertStatus(404);
     }
 
     public function test_update_returns_404_for_missing_task(): void
