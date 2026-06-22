@@ -110,8 +110,8 @@ class TaskControllerTest extends TestCase
 
     public function test_can_sort_tasks_by_created_at(): void
     {
-        $earlier = Task::factory()->create();
-        $later = Task::factory()->create();
+        $earlier = Task::factory()->create(['created_at' => now()->subDay()]);
+        $later = Task::factory()->create(['created_at' => now()]);
 
         $response = $this->getJson('/api/v1/tasks?sort=created_at');
         $response->assertOk();
@@ -122,8 +122,8 @@ class TaskControllerTest extends TestCase
 
     public function test_can_sort_tasks_by_created_at_descending(): void
     {
-        $earlier = Task::factory()->create();
-        $later = Task::factory()->create();
+        $earlier = Task::factory()->create(['created_at' => now()->subDay()]);
+        $later = Task::factory()->create(['created_at' => now()]);
 
         $response = $this->getJson('/api/v1/tasks?sort=-created_at');
         $response->assertOk();

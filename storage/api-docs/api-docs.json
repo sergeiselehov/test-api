@@ -25,53 +25,53 @@
                                     "data": [
                                         {
                                             "id": 1,
-                                            "title": "Dolorem aut sint.",
-                                            "description": "Eius aliquam non at consequatur quam. Quia eveniet possimus dolorum deserunt qui. Optio aut nihil ad est incidunt officia. Qui sed id repellat sapiente.",
-                                            "due_date": "2026-07-12T11:36:54+00:00",
-                                            "create_date": "2026-06-22T12:20:11+00:00",
+                                            "title": "Eos quidem ratione aut provident.",
+                                            "description": "In architecto qui velit. Labore rem voluptas blanditiis voluptatem repudiandae. Veniam amet rerum et.",
+                                            "due_date": "2026-07-13T06:31:58+00:00",
+                                            "create_date": "2026-06-22T12:36:54+00:00",
                                             "status": "выполнена",
+                                            "priority": "высокий",
+                                            "category": "Личное"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "Minima sunt.",
+                                            "description": "Eos quis eius vel quasi qui omnis. Ut temporibus vitae earum. Pariatur sit sit ipsum vel nulla maiores voluptatem.",
+                                            "due_date": "2026-07-17T04:32:14+00:00",
+                                            "create_date": "2026-06-22T12:36:54+00:00",
+                                            "status": "не выполнена",
+                                            "priority": "низкий",
+                                            "category": "Личное"
+                                        },
+                                        {
+                                            "id": 3,
+                                            "title": "Eos quis.",
+                                            "description": "Ea ad quaerat quibusdam rerum incidunt. Placeat perferendis atque earum reiciendis labore omnis. Nobis illo nulla natus repellat hic.",
+                                            "due_date": "2026-07-13T15:56:11+00:00",
+                                            "create_date": "2026-06-22T12:36:54+00:00",
+                                            "status": "не выполнена",
                                             "priority": "средний",
                                             "category": "Дом"
                                         },
                                         {
-                                            "id": 2,
-                                            "title": "Architecto doloremque et sapiente.",
-                                            "description": "Aut placeat nemo quo quibusdam fugiat et ut. Eveniet vero ut eos autem commodi vel sapiente. Recusandae alias ex et quod alias.",
-                                            "due_date": "2026-07-07T11:15:32+00:00",
-                                            "create_date": "2026-06-22T12:20:11+00:00",
-                                            "status": "не выполнена",
-                                            "priority": "низкий",
-                                            "category": "Дом"
-                                        },
-                                        {
-                                            "id": 3,
-                                            "title": "Eos qui eum quasi.",
-                                            "description": "Dicta quod ut voluptas. Quod dignissimos ut repellat ut quae. Autem eum perferendis commodi reprehenderit qui. Eos culpa qui et officiis commodi aut totam aut.",
-                                            "due_date": "2026-06-28T23:30:06+00:00",
-                                            "create_date": "2026-06-22T12:20:11+00:00",
+                                            "id": 4,
+                                            "title": "Beatae qui impedit.",
+                                            "description": null,
+                                            "due_date": "2026-07-15T14:34:43+00:00",
+                                            "create_date": "2026-06-22T12:36:54+00:00",
                                             "status": "выполнена",
                                             "priority": "низкий",
-                                            "category": "Работа"
-                                        },
-                                        {
-                                            "id": 4,
-                                            "title": "Unde quaerat dolor dolorem tempora.",
-                                            "description": null,
-                                            "due_date": "2026-06-30T01:44:37+00:00",
-                                            "create_date": "2026-06-22T12:20:11+00:00",
-                                            "status": "не выполнена",
-                                            "priority": "высокий",
-                                            "category": "Работа"
+                                            "category": "Личное"
                                         },
                                         {
                                             "id": 5,
-                                            "title": "Pariatur dolorem quia minima.",
-                                            "description": null,
-                                            "due_date": "2026-07-01T20:31:55+00:00",
-                                            "create_date": "2026-06-22T12:20:11+00:00",
-                                            "status": "не выполнена",
-                                            "priority": "высокий",
-                                            "category": "Дом"
+                                            "title": "Minus quas.",
+                                            "description": "Sed odit ut assumenda ut ut. Iusto odit fugiat quibusdam dicta. Nulla non unde non pariatur velit. Vel dolorem iste qui odit.",
+                                            "due_date": "2026-07-18T11:26:05+00:00",
+                                            "create_date": "2026-06-22T12:36:54+00:00",
+                                            "status": "выполнена",
+                                            "priority": "средний",
+                                            "category": "Работа"
                                         }
                                     ],
                                     "payload": [],
@@ -170,12 +170,12 @@
                                 "example": {
                                     "data": {
                                         "id": 1,
-                                        "title": "Reprehenderit odit ut.",
-                                        "description": "Et error aspernatur non rem a. Eius consequuntur ea fugit reiciendis. Quo eligendi aut debitis ab nulla. Facere accusamus voluptatum beatae laboriosam.",
-                                        "due_date": "2026-07-10T05:56:59+00:00",
-                                        "create_date": "2026-06-22T12:20:11+00:00",
+                                        "title": "Voluptatem cumque id.",
+                                        "description": null,
+                                        "due_date": "2026-07-15T12:50:09+00:00",
+                                        "create_date": "2026-06-22T12:36:54+00:00",
                                         "status": "не выполнена",
-                                        "priority": "низкий",
+                                        "priority": "средний",
                                         "category": "Личное"
                                     }
                                 }
